@@ -3,7 +3,7 @@ Streaming using a cheap HDMI capture card and a Raspberry Pi 4 to an RTMP Receiv
 
 
 
-![Dodgy Banner](/IMG_20201128_170914.jpg)
+![Dodgy Banner](/images/IMG_20201128_170914.jpg)
 
 
 
@@ -30,6 +30,9 @@ v4l2-ctl --set-fmt-video=width=1280,height=720 && ffmpeg -f v4l2 -thread_queue_s
 
 # Find the right Capture card: 
 Look up an HDMI Capture card with UVC (Usb Video Class) and UAC (Usb Audio Class). Typing in "USB Hdmi Capture UVC" should return appropriate results. Make sure that the description lists UVC and UAC. For this use case, there isnt much difference between USB 2 and USB 3, the bottleneck is the Raspberry Pi CPU/GPU. 
+
+![Dodgy Banner](/images/Screenshot%20from%202020-11-28%2015-52-31.png)
+
 
 
 
@@ -253,6 +256,6 @@ Lets break it down:
   
   (FFmpeg Documentation](https://trac.ffmpeg.org/wiki/EncodingForStreamingSites) 
   
-  [ffmpeg IRC Channel (The person who PM'ed me didnt wish to be credited) ](https://ffmpeg.org/contact.html) 
+  [ffmpeg IRC Channel](https://ffmpeg.org/contact.html) (the person who helped me didnt wish to be credited)
    
   https://github.com/pikvm/ustreamer (for LOTS OF debugging)
