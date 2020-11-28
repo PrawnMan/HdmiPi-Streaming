@@ -24,7 +24,7 @@ HDMI Splitter isnt mandatory, but there is a 10s delay between the local stream 
 If you're in a rush, here's the code to Stream to twitch. You'll need the RTMP url and you might need to modify the command depending on how the USB device was detected on your system: 
 
 ```
-v4l2-ctl --set-fmt-video=width=1280,height=720 && ffmpeg -f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0 -f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1  -c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx -f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX 
+v4l2-ctl --set-fmt-video=width=1280,height=720 && ffmpeg -f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0 -f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1  -c:a aac  -b:a 128k -ar 44100 -b:v 4M -c:v h264_omx -f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX 
 ```
 
 
@@ -221,7 +221,7 @@ Now, we have the video stream **/dev/video0** and the audio stream **1,0**. Howe
 The command to stream the video **/dev/video0** and audio **1,0** to ffmpeg, convert it using the Raspberry Pi inbuilt HW encoder, then stream it to twitch is as followss: 
 
 ```
-ffmpeg -f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0 -f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1  -c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx -f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX 
+ffmpeg -f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0 -f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1  -c:a aac  -b:a 128k -ar 44100 -b:v 4M -c:v h264_omx -f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX 
 ```
 
 Lets break it down: 
@@ -229,12 +229,12 @@ Lets break it down:
  - ffmpeg : The program we are using for conversion
  - "-f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0" : Use the 30fps MJPEG stream at **/dev/video0** and give it some buffer. 
  - "-f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1" : Use the audio from **1,0**, mono audio (Capture card limitation), codec pcm_161e, with a sample of 96kHz. 
- - "-c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx" : Convert Audio to Birtate 128K, sample rate of 44.1kHz. Convert Video using Hardware H264 encoder, bitrate of 8Mb/s. 
+ - "-c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx" : Convert Audio to Birtate 128K, sample rate of 44.1kHz. Convert Video using Hardware H264 encoder, bitrate of 4Mb/s. 
  
  - "-f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX " Mux the convereted Video and Audio into an FLV and send it to your Stream key. 
  
  
- You should see your stream show up on your platform of choice, however there will be a delay. 
+ You should see your stream show up on your platform of choice, however there will be a delay. On twitch, I get a roughly 10s delay between gameplay and whats on twitch. 
  
  
 # Benefits : 
