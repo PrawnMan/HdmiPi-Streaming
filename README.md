@@ -247,6 +247,6 @@ Lets break it down:
   
   (FFmpeg Documentation](https://trac.ffmpeg.org/wiki/EncodingForStreamingSites) 
   
-  [ffmpeg IRC Channel (The person who PM'ed me didnt wish to be credited)](https://ffmpeg.org/contact.html) 
+  [ffmpeg IRC Channel (The person who PM'ed me didnt wish to be credited) ](https://ffmpeg.org/contact.html) 
    
   
