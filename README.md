@@ -60,7 +60,7 @@ boot_delay=1 #helps to avoid sdcard corruption when force_turbo is enabled.
 
 # Software Explaination: 
 
-Set up your Pi, making sure it is up to date, and ensuring that **ffmpeg** is installed. Plug in the device, wait a moment and type into the terminal (local or SSH), **v4l2-ctl --list-devices**.  You should get something similar to this: 
+Set up your Pi, making sure it is up to date, and ensuring that **ffmpeg** is installed. Plug in the device, wait a moment and type into the terminal (local or SSH), `v4l2-ctl --list-devices`.  You should get something similar to this: 
 
 ```
 pi@capturepi:~ $ v4l2-ctl --list-devices
@@ -81,7 +81,7 @@ UVC Camera (534d:2109): USB Vid (usb-0000:01:00.0-1.4):
 
 ```
 
-The last listing is what we're interested in. Make a quick note of where the device is (in my case **/dev/video0**) The next step will indicate how to decide between video0 and video1. Type in 
+The last listing is what we're interested in. Make a quick note of where the device is (in my case **/dev/video0**) The next step will indicate how to decide between video0 and video1. Type in `v4l2-ctl -d /dev/video0 --list-formats-ex`
 
 ```
 pi@capturepi:~ $ v4l2-ctl -d /dev/video0 --list-formats-ex
