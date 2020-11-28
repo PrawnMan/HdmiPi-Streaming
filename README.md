@@ -40,7 +40,9 @@ ______
 
 
 
-# Raspberry Pi Setup: 
+# Raspberry Pi Setup
+
+______________
 
 
 # Raspberry Pi OC settings (/boot/config.txt): 
