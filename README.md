@@ -60,7 +60,7 @@ boot_delay=1 #helps to avoid sdcard corruption when force_turbo is enabled.
 #sdram_freq=500 #uncomment to test. Works only with some boards.
 ```
 
-# Software Explaination: 
+# Identifying capture card and setting resolution: 
 
 Set up your Pi, making sure it is up to date, and ensuring that `ffmpeg` and `v4l-utils` is installed. You can do so with the command `sudo apt install ffmpeg v4l-utils`.  Plug in the device, wait a moment and type into the terminal (local or SSH), `v4l2-ctl --list-devices`.  You should get something similar to this: 
 
