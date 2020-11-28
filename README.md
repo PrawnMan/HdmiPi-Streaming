@@ -243,10 +243,10 @@ Lets break it down:
   
   My knowledge in linux is bare minimal, I take no credit whatsoever apart from documenting what worked in my case. 
   
-  https://wiki.archlinux.org/index.php/Streaming_to_twitch.tv (ofcourse) 
+  [Arch Wiki, Ofcourse](https://wiki.archlinux.org/index.php/Streaming_to_twitch.tv) 
   
-  https://trac.ffmpeg.org/wiki/EncodingForStreamingSites 
+  (https://trac.ffmpeg.org/wiki/EncodingForStreamingSites) 
   
-  ffmpeg IRC 
+  [ffmpeg IRC Channel (The person who PM'ed me didnt wish to be credited)] (https://ffmpeg.org/contact.html) 
    
   
