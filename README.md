@@ -219,3 +219,26 @@ Lets break it down:
  - "-c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx" : Convert Audio to Birtate 128K, sample rate of 44.1kHz. Convert Video using Hardware H264 encoder, bitrate of 8Mb/s. 
  
  - "-f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX " Mux the convereted Video and Audio into an FLV and send it to your Stream key. 
+ 
+ 
+ You should see your stream show up on your platform of choice, however there will be a delay. 
+ 
+ 
+# Benefits : 
+
+- Uses cheap HDMI capture cards over a USB interface
+- Raspberry Pi is relatively inexpensive and has little power comsumption compared to dedicated capture PC
+- If capturing a PC display, less conversion load on host PC. 
+- Minimal software prerequesites 
+
+# Caveats
+
+- Audio is only at mono (I think this is a limitation of the capture card themselves)
+- Resolution is capped at 720P for 25+ FPS stream, due to software conversion of the MJPEG colourspace (I think, I might be wrong)
+- No GUI (at present)
+  - Some proficency at command line needed. 
+  
+  
+  
+  
+  
