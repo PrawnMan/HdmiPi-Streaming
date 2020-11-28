@@ -3,7 +3,7 @@ Streaming using a cheap HDMI capture card and a Raspberry Pi 4 to an RTMP Receiv
 
 
 
-![Dodgy Banner](/images/logo.png)
+![Dodgy Banner](/IMG_20201128_170914.jpg)
 
 
 
