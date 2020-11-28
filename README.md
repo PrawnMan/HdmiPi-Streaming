@@ -47,7 +47,7 @@ boot_delay=1 #helps to avoid sdcard corruption when force_turbo is enabled.
 
 # Software Explaination: 
 
-Set up your Pi, making sure it is up to date, and ensuring that **ffmpeg** is installed. Plug in the device, wait a moment and type in **v4l2-ctl --list-devices**.  You should get something similar to this: 
+Set up your Pi, making sure it is up to date, and ensuring that **ffmpeg** is installed. Plug in the device, wait a moment and type into the terminal (local or SSH), **v4l2-ctl --list-devices**.  You should get something similar to this: 
 
 ```
 pi@capturepi:~ $ v4l2-ctl --list-devices
@@ -68,7 +68,7 @@ UVC Camera (534d:2109): USB Vid (usb-0000:01:00.0-1.4):
 
 ```
 
-The last listing is what we're interested in. Make a quick note of where the device is (in my case **/dev/video0**) The next step will indicate how to decide between video0 and video1
+The last listing is what we're interested in. Make a quick note of where the device is (in my case **/dev/video0**) The next step will indicate how to decide between video0 and video1. Type in 
 
 ```
 pi@capturepi:~ $ v4l2-ctl -d /dev/video0 --list-formats-ex
@@ -181,4 +181,24 @@ ioctl: VIDIOC_ENUM_FMT
 	Type: Video Capture
 
 ``` 
+
+In my Instance **video0** lists a bunch of formats whilst **video1** doesnt. You could try to open **video0** in VLC or ffplay at this moment but you'll notice that the frame rate is very low. Thats because it defaults to the "YUYV" stream instead of "MJPG" one. We will need to use the "MJPG" stream in this instance. Take note of **/dev/video0** or whatever it may be in your case. 
+
+
+Now, we need to sort out audio. List the audio devices using the command "cat /proc/asound/devices" : 
+
+```
+pi@capturepi:~ $ cat /proc/asound/devices
+  0: [ 0]   : control
+ 16: [ 0- 0]: digital audio playback
+ 32: [ 1]   : control
+ 33:        : timer
+ 56: [ 1- 0]: digital audio capture
+```
+
+The last one looks like what we're after. Take note of the **"[ 1- 0]"** or what it might be in your setup. 
+
+
+
+
 
