@@ -196,9 +196,26 @@ pi@capturepi:~ $ cat /proc/asound/devices
  56: [ 1- 0]: digital audio capture
 ```
 
-The last one looks like what we're after. Take note of the **"[ 1- 0]"** or what it might be in your setup. 
+The last one looks like what we're after. Take note of the **"[ 1- 0]"** or what it might be in your setup. In the script, it will be formatted as **1,0**. If it was listed as **"[ 2- 0]"**, it would be formatted as **2,0**. 
 
 
+Now, we have the video stream **/dev/video0** and the audio stream **1,0**. However, the PI (As of me writing this) cannot convert 1080p footage at anything above 8-10fps. I suspect that this is due to Software conversion happening for the colour values in the MJPG stream. You'll need to reduce the resolution of the capture device. This is temporary, and will reset on device reboot, or if you change it manually. To change the resolution to 720P, you'll need to invoke the following command: 
 
+```v4l2-ctl --set-fmt-video=width=1280,height=720```
 
+# ffmpeg Command explaination
 
+The command to stream the video **/dev/video0** and audio **1,0** to ffmpeg, convert it using the Raspberry Pi inbuilt HW encoder, then stream it to twitch is as followss: 
+
+```
+ffmpeg -f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0 -f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1  -c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx -f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX 
+```
+
+Lets break it down: 
+
+ - ffmpeg : The program we are using for conversion
+ - "-f v4l2 -thread_queue_size 384 -input_format mjpeg -framerate 30 -i /dev/video0" : Use the 30fps MJPEG stream at **/dev/video0** and give it some buffer. 
+ - "-f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1" : Use the audio from **1,0**, mono audio (Capture card limitation), codec pcm_161e, with a sample of 96kHz. 
+ - "-c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx" : Convert Audio to Birtate 128K, sample rate of 44.1kHz. Convert Video using Hardware H264 encoder, bitrate of 8Mb/s. 
+ 
+ - "-f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX " Mux the convereted Video and Audio into an FLV and send it to your Stream key. 
