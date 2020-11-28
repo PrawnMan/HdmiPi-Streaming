@@ -1,6 +1,12 @@
 # HdmiPi-Streaming
 Streaming using a cheap HDMI capture card and a Raspberry Pi 4 to an RTMP Receiver. 
 
+
+
+![Dodgy Banner](/images/logo.png)
+
+
+
 After maybe a month of pulling my hair out, I finally got cheap USB HDMI capture cards work well with the Hardware encoder on the Pi and stream it to Twitch. For best performance your Raspberry Pi needs to be overclocked and have adequate cooling. These are the settings that worked for me. 
 
 Here's what you need: 
