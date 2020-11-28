@@ -60,7 +60,7 @@ boot_delay=1 #helps to avoid sdcard corruption when force_turbo is enabled.
 
 # Software Explaination: 
 
-Set up your Pi, making sure it is up to date, and ensuring that **ffmpeg** is installed. Plug in the device, wait a moment and type into the terminal (local or SSH), `v4l2-ctl --list-devices`.  You should get something similar to this: 
+Set up your Pi, making sure it is up to date, and ensuring that `ffmpeg` and `v4l-utils` is installed. You can do so with the command `sudo apt install ffmpeg v4l-utils`.  Plug in the device, wait a moment and type into the terminal (local or SSH), `v4l2-ctl --list-devices`.  You should get something similar to this: 
 
 ```
 pi@capturepi:~ $ v4l2-ctl --list-devices
@@ -242,7 +242,8 @@ Lets break it down:
 - Uses cheap HDMI capture cards over a USB interface
 - Raspberry Pi is relatively inexpensive and has little power comsumption compared to dedicated capture PC
 - If capturing a PC display, less conversion load on host PC. 
-- Minimal software prerequesites 
+- Minimal software prerequesites, Raspberry Pi OS Lite + `ffmpeg` + `v4l-utils` is basically all you need. 
+ 
 
 # Caveats
 
