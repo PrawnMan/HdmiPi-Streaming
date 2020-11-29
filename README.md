@@ -233,7 +233,7 @@ Lets break it down:
  - "-f alsa -thread_queue_size 4096 -i plughw:1,0 -acodec pcm_s16le -ac 1 -ar 96000 -copytb 1 -use_wallclock_as_timestamps 1" : Use the audio from **1,0**, mono audio (Capture card limitation), codec pcm_161e, with a sample of 96kHz. 
  - "-c:a aac  -b:a 128k -ar 44100 -b:v 8M -c:v h264_omx" : Convert Audio to Birtate 128K, sample rate of 44.1kHz. Convert Video using Hardware H264 encoder, bitrate of 4Mb/s. 
  
- - "-f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX " Mux the convereted Video and Audio into an FLV and send it to your Stream key. 
+ - "-f flv rtmp://live.twitch.tv/app/XXXXXXXXXXXXXXXXXXXXXXX " Mux the convereted Video and Audio into an FLV container and send it to your stream destination. 
  
  
  You should see your stream show up on your platform of choice, however there will be a delay. On twitch, I get a roughly 10s delay between gameplay and whats on twitch. 
@@ -241,7 +241,7 @@ Lets break it down:
  
 # Benefits : 
 
-- Uses cheap HDMI capture cards over a USB interface
+- USB HDMI Capture cards are inexpensive compared to other HDMI capture solutions.  
 - Raspberry Pi is relatively inexpensive and has little power comsumption compared to dedicated capture PC
 - If capturing a PC display, less conversion load on host PC. 
 - Minimal software prerequesites, Raspberry Pi OS Lite + `ffmpeg` + `v4l-utils` is basically all you need. 
