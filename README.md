@@ -266,3 +266,5 @@ Lets break it down:
   [ffmpeg IRC Channel](https://ffmpeg.org/contact.html) (the person who helped me didnt wish to be credited)
    
   https://github.com/pikvm/ustreamer (I used this for LOTS of debugging)
+  
+  Big shoutout to [Will Usher and his Blog](https://www.willusher.io/general/2020/11/15/hw-accel-encoding-rpi4), for alerting me to his blog as well as a new encoder. As of this moment, the Raspberry Pi is still constrained by its CPU for a filtering step, however, I will be looking into improving performance. 
